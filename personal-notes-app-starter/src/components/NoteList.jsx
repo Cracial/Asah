@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NoteItem from './NoteItem';
 
-function NoteList({ notes, emptyMessage }) {
+function NoteList({ notes, emptyMessage, onDelete }) {
   if (!notes.length) {
     return (
       <section className="notes-list-empty">
@@ -14,7 +14,7 @@ function NoteList({ notes, emptyMessage }) {
   return (
     <section className="notes-list">
       {notes.map((note) => (
-        <NoteItem key={note.id} {...note} />
+        <NoteItem key={note.id} {...note} onDelete={onDelete} />
       ))}
     </section>
   );
@@ -31,6 +31,7 @@ NoteList.propTypes = {
     })
   ).isRequired,
   emptyMessage: PropTypes.string.isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default NoteList;

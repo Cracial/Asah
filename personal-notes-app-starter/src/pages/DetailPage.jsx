@@ -1,8 +1,8 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import parser from 'html-react-parser';
 import { getNote, deleteNote, archiveNote, unarchiveNote } from '../utils/local-data';
-import { showFormattedDate } from '../utils'; // Impor terpisah dari '../utils'
+import { showFormattedDate } from '../utils';
 
 function DetailPage() {
   const { id } = useParams();
@@ -37,6 +37,11 @@ function DetailPage() {
         <button type="button" onClick={handleArchiveToggle}>
           {note.archived ? 'Pindahkan' : 'Arsipkan'}
         </button>
+        <Link to={`/notes/${id}/edit`}>
+          <button type="button" style={{ backgroundColor: '#0284c7', color: '#fff' }}>
+            Edit
+          </button>
+        </Link>
         <button type="button" onClick={handleDelete}>
           Hapus
         </button>

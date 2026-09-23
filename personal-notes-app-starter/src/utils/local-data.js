@@ -63,9 +63,16 @@ function getArchivedNotes() {
 }
 
 function addNote({ title, body }) {
-  notes = [...notes, {
-    id: `notes-${+new Date()}`, title: title || '(untitled)', body, createdAt: new Date().toISOString(), archived: false,
-  }];
+  notes = [
+    ...notes,
+    {
+      id: `notes-${+new Date()}`,
+      title: title || '(untitled)',
+      body,
+      createdAt: new Date().toISOString(),
+      archived: false,
+    },
+  ];
 }
 
 function deleteNote(id) {
@@ -86,19 +93,18 @@ function unarchiveNote(id) {
     if (note.id === id) {
       return { ...note, archived: false };
     }
-
     return note;
   });
 }
 
 function editNote({ id, title, body }) {
-  const noteToEdit = notes.find((note) => note.id === id);
-  noteToEdit.title = title;
-  noteToEdit.body = body;
-
   notes = notes.map((note) => {
     if (note.id === id) {
-      return note;
+      return {
+        ...note,
+        title: title || '(untitled)',
+        body,
+      };
     }
     return note;
   });
