@@ -1,0 +1,528 @@
+/* ==========================================================================
+   1. CSS VARIABLES & THEMING
+   ========================================================================== */
+:root {
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  
+  /* Light Theme Colors */
+  --bg-primary: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #cbd5e1;
+  
+  /* Brand & Accent Colors */
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  
+  /* Shadows & Glassmorphism */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+  --shadow-fab: 0 6px 20px rgba(99, 102, 241, 0.45);
+  --shadow-fab-danger: 0 6px 20px rgba(239, 68, 68, 0.45);
+  --header-bg: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Colors */
+  --bg-primary: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-surface-hover: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  
+  /* Brand & Accent Colors */
+  --primary-color: #818cf8;
+  --primary-hover: #6366f1;
+  --danger-color: #f87171;
+  --danger-hover: #ef4444;
+  
+  /* Shadows & Glassmorphism */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-fab: 0 6px 20px rgba(129, 140, 248, 0.35);
+  --shadow-fab-danger: 0 6px 20px rgba(248, 113, 113, 0.35);
+  --header-bg: rgba(30, 41, 59, 0.85);
+}
+
+/* ==========================================================================
+   2. BASE RESETS
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+html, body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION
+   ========================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+}
+
+.navigation-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1, header h1 a {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-color);
+  text-decoration: none;
+}
+
+.toggle-theme, .toggle-locale, .button-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.925rem;
+  font-weight: 500;
+}
+
+.toggle-theme:hover, .toggle-locale:hover, .button-logout:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   4. LAYOUT CONTAINER & HEADINGS
+   ========================================================================== */
+main, .app-container__main {
+  max-width: 1080px;
+  margin: 2rem auto;
+  padding: 0 1.5rem 6rem;
+}
+
+section h2, .homepage h2, .archives-page h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   5. SEARCH BAR
+   ========================================================================== */
+.search-bar {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.975rem;
+  box-shadow: var(--shadow-sm);
+  outline: none;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   6. NOTE LIST & CARDS
+   ========================================================================== */
+.notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5rem;
+}
+
+.notes-list__empty, .notes-list-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.note-item {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  min-height: 200px;
+}
+
+.note-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.note-item__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.note-item__title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.note-item__title a:hover {
+  color: var(--primary-color);
+}
+
+.note-item__createdAt {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.note-item__body {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   7. DETAIL PAGE
+   ========================================================================== */
+.detail-page {
+  max-width: 760px;
+  margin: 1rem auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.detail-page__title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+}
+
+.detail-page__createdAt {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-page__body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   8. FLOATING ACTION BUTTONS (FAB)
+   ========================================================================== */
+.homepage__action, .archive-page__action, .detail-page__action, .add-new-page__action {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 99;
+}
+
+.action {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-fab);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.08);
+}
+
+.action-danger {
+  background-color: var(--danger-color);
+  box-shadow: var(--shadow-fab-danger);
+}
+
+.action-danger:hover {
+  background-color: var(--danger-hover);
+}
+
+/* ==========================================================================
+   9. AUTHENTICATION & FORM PAGES
+   ========================================================================== */
+.login-page, .register-page, .add-new-page {
+  max-width: 460px;
+  margin: 3rem auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.add-new-page {
+  max-width: 760px;
+}
+
+.login-page h2, .register-page h2, .add-new-page h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.input-login, .input-register, .add-new-page__input {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.input-login label, .input-register label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input-login input, .input-register input, .add-new-page__input__title, .add-new-page__input__body {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.975rem;
+  outline: none;
+}
+
+.input-login input:focus, .input-register input:focus, .add-new-page__input__title:focus, .add-new-page__input__body:focus {
+  border-color: var(--primary-color);
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+.input-login button, .input-register button {
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.input-login button:hover, .input-register button:hover {
+  background-color: var(--primary-hover);
+}
+
+.login-page p, .register-page p {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.add-new-page__input__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.add-new-page__input__body {
+  min-height: 240px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   10. LOADING INDICATOR
+   ========================================================================== */
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 240px;
+  gap: 1rem;
+  color: var(--text-secondary);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   11. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+  header {
+    padding: 0.85rem 1rem;
+  }
+  
+  main, .app-container__main {
+    padding: 0 1rem 5rem;
+    margin: 1.5rem auto;
+  }
+
+  .detail-page, .login-page, .register-page, .add-new-page {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .detail-page__title {
+    font-size: 1.75rem;
+  }
+
+  .homepage__action, .archive-page__action, .detail-page__action, .add-new-page__action {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .action {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link span, .button-logout span {
+    display: none;
+  }
+
+  .navigation-container {
+    gap: 0.5rem;
+  }
+
+  .notes-list {
+    grid-template-columns: 1fr;
+  }
+}
