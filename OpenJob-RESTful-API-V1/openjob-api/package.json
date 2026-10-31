@@ -1,0 +1,28 @@
+{
+  "name": "openjob-restful-api-v1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RESTful API OpenJob v1 - Express, PostgreSQL, JWT, Joi, node-pg-migrate",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:dev": "nodemon src/server.js",
+    "migrate": "node scripts/migrate.js",
+    "migrate:up": "node scripts/migrate.js up",
+    "migrate:down": "node scripts/migrate.js down",
+    "check": "node scripts/static-check.js"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "node-pg-migrate": "^7.9.1",
+    "nodemon": "^3.1.9"
+  }
+}

@@ -1,0 +1,19 @@
+digraph OpenJob {
+  graph [rankdir=LR,bgcolor="#ffffff",splines=true,pad=0.4, nodesep=0.7, ranksep=1.0];
+  node [shape=record,style="rounded,filled",fillcolor="#EFF6FF",color="#4C6B91",fontname="DejaVu Sans",fontsize=11];
+  edge [color="#64748B",fontname="DejaVu Sans",fontsize=9,arrowsize=0.7];
+  users [label="{users|id (PK)\lname\lemail (UNIQUE)\lpassword (hash)\lrole\lcreated_at\l}"];
+  companies [label="{companies|id (PK)\lname\llocation\ldescription\lcreated_at\l}"];
+  categories [label="{categories|id (PK)\lname\lcreated_at\l}"];
+  jobs [label="{jobs|id (PK)\lcompany_id (FK)\lcategory_id (FK)\ltitle\ldescription\ljob_type\lexperience_level\llocation_type\llocation_city\lsalary_min / salary_max\lis_salary_visible\lstatus\lcreated_at\l}",fillcolor="#D9EBD7"];
+  applications [label="{applications|id (PK)\luser_id (FK)\ljob_id (FK)\lstatus\lcreated_at\l}"];
+  bookmarks [label="{bookmarks|id (PK)\luser_id (FK)\ljob_id (FK)\lcreated_at\lUNIQUE(user_id,job_id)\l}"];
+  authentications [label="{authentications|token (PK)\luser_id (FK)\lcreated_at\l}"];
+  users -> applications [label="1 : N",dir=back];
+  jobs -> applications [label="1 : N",dir=back];
+  users -> bookmarks [label="1 : N",dir=back];
+  jobs -> bookmarks [label="1 : N",dir=back];
+  users -> authentications [label="1 : N",dir=back];
+  companies -> jobs [label="1 : N",dir=back];
+  categories -> jobs [label="1 : N",dir=back];
+}
